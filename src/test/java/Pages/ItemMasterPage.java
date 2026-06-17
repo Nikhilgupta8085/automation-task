@@ -151,39 +151,9 @@ public class ItemMasterPage {
     // Status dropdown
     private final By status =
             By.xpath("//select[@id='status']");
-
-    // Quality Check (custom checkbox label)
-    private final By qualityCheckLabel =
-            By.xpath("//label[@for='qualityCheck']");
-
-    // UOM
-    private final By uomDropdown =
-            By.xpath("//input[@autocomplete='a7ec3ed1006b']");
-    private final By uomChoose =
-            By.xpath("//div[@role='option']//span[text()='Box']");
-
-    // Conversion Factor
-    private final By conversion =
-            By.xpath("//input[@id='conversionFactor']");
-
-    // Add icon — Alternate Units section
-    private final By addicon =
-            By.xpath("(//i[contains(@class,'ft-plus')])[1]");
-
-    // Add icon — Photo Uploads section
-    private final By addNewIcon =
-            By.xpath("(//i[contains(@class,'ft-plus')])[2]");
-
-    // Choose file
-    private final By chooseFile =
-            By.xpath("(//input[@id='file'])[1]");
-
-
-    //choose generalDropdown 2
-    private final By file=
-            By.xpath("(//input[@role='combobox'])[2]");
-    private final By generalChoose =
-            By.xpath("//div[@role='option']//span[text()='Shipping Bill Details']");
+    //savebtn
+    private final By Save=
+            By.xpath("//button[normalize-space()='Save']");
 
     public ItemMasterPage(WebDriver driver) {
         this.driver = driver;
@@ -217,31 +187,7 @@ public class ItemMasterPage {
         System.out.println("Selected HSN Code: 10255");
     }
 
-    private void selectUomBox() {
-        wait.until(ExpectedConditions.elementToBeClickable(uomDropdown));
-        driver.findElement(uomDropdown).click();
-        System.out.println("Clicked UOM dropdown.");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(uomChoose));
-        driver.findElement(uomChoose).click();
-        System.out.println("Selected UOM: Box");
-    }
-    private void selectGeneralDropdown() {
-        wait.until(ExpectedConditions.elementToBeClickable(file));
-        driver.findElement(file).click();
-        System.out.println("Clicked UOM dropdown.");
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(generalChoose));
-        driver.findElement(generalChoose).click();
-        System.out.println("Selected UOM: Box");
-    }
-
-
-    private void uploadFile() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(chooseFile));
-        driver.findElement(chooseFile).sendKeys("C:\\Users\\Nikhil Gupta\\Downloads\\contract (2).pdf");
-        System.out.println("File uploaded: contract (2).pdf");
-    }
 
     public void fillForm() {
 
@@ -340,32 +286,8 @@ public class ItemMasterPage {
         // Status
         selectFirstOption(status);
 
-        // Quality Check
-        driver.findElement(qualityCheckLabel).click();
-        System.out.println("Quality Check checkbox toggled.");
-
-        // UOM
-        selectUomBox();
-
-
-
-        // Conversion Factor
-        driver.findElement(conversion).sendKeys("1.5");
-
-        // Add row (Alternate Units)
-        driver.findElement(addicon).click();
-        System.out.println("Clicked Add icon for Alternate Units.");
-
-        // Add row (Photo Uploads)
-        driver.findElement(addNewIcon).click();
-        System.out.println("Clicked Add icon for Photo Uploads.");
-
-        // Upload file
-        uploadFile();
-
-
-        //general DropDown
-        selectGeneralDropdown();
+        //save
+        driver.findElement(Save).click();
 
         System.out.println("Form filled successfully.");
     }
